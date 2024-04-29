@@ -22,8 +22,6 @@ int main(int argc, char *argv[])
   AddBankWindow add(&banks_array);
   Widget wid(&banks_array, &add);
   add.parent_copy = &wid;
-  AddBankWindow* ab = &add;
-  Widget* ba = &wid;
 
   wid.setSizeIncrement(110, 30);
   wid.show();
