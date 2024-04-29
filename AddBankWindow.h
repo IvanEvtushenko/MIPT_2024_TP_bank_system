@@ -14,9 +14,8 @@ class AddBankWindow : public QWidget {
 Q_OBJECT
 
 public:
-    explicit AddBankWindow(std::vector<Bank*>*, QWidget *parent = nullptr);
+    explicit AddBankWindow(std::vector<Bank*>*);
     ~AddBankWindow();
-
 
 private:
     std::vector<Bank*>* banks_array;
@@ -36,9 +35,9 @@ private:
     QFormLayout* layout_lines;
 
 public:
-    Widget* parent_copy;
+    Widget* parent_link;
     QPushButton* is_done;
 
 public slots:
-    void ClickedButton2();
+    void ClickedButton();
 };

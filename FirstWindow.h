@@ -6,7 +6,7 @@
 #include <QComboBox>
 #include <QMenu>
 #include <QAction>
-#include <QLineEdit>
+#include <QLabel>
 #include <QDialog>
 #include <QSize>
 
@@ -23,19 +23,19 @@ public:
     Widget(std::vector<Bank*>*, QWidget*, QWidget *parent = nullptr);
     ~Widget();
 
-    void receiver(std::string);
+    void active_bank_adding_finished(std::string&);
 
 protected:
     QComboBox* bank_menu;
 
 private:
     QPushButton* create_bank;
-    QLineEdit select_bank;
+    QLabel* select_bank;
     std::vector<Bank*>* banks_array;
 
     QVBoxLayout* layout_bank;
 
-    QDialog* active_bank_ex;
+    QWidget* active_bank_ex;
     QWidget* active_bank_adding_ex;
 
 

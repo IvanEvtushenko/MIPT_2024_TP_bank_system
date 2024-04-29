@@ -1,7 +1,7 @@
 #include "AddBankWindow.h"
 #include "FirstWindow.h"
 
-AddBankWindow::AddBankWindow(std::vector<Bank*>* banks_array, QWidget* parent): banks_array(banks_array), QWidget(parent) {
+AddBankWindow::AddBankWindow(std::vector<Bank*>* banks_array): banks_array(banks_array), QWidget(nullptr) {
   label_bank_name = new QLabel("Введите название банка");
   label_bank_commission = new QLabel("Установите комиссию банка");
   label_bank_limit = new QLabel("Установите лимит отрицательного баланса");
@@ -21,17 +21,21 @@ AddBankWindow::AddBankWindow(std::vector<Bank*>* banks_array, QWidget* parent): 
   layout_lines->addRow(label_bank_time_limit, bank_time_limit);
   layout_lines->addRow(is_done);
 
-  connect(is_done, &QPushButton::clicked, this, &AddBankWindow::ClickedButton2);
+  connect(is_done, &QPushButton::clicked, this, &AddBankWindow::ClickedButton);
 }
 
 AddBankWindow::~AddBankWindow() {}
 
+void QWidget::closeEvent(QCloseEvent* event) {
+  static_cast<AddBankWindow*>(this)->parent_link->show();
+  acceptDrops();
+}
 
-void AddBankWindow::ClickedButton2() {
+void AddBankWindow::ClickedButton() {
   std::string name = bank_name->text().toStdString();
   double commission = std::stof(bank_commission->text().toStdString());
   double time = std::stof(bank_limit->text().toStdString());
   size_t time_limit = std::stoull(bank_time_limit->text().toStdString());
   banks_array->push_back(new Bank(name, commission, time, time_limit));
-  static_cast<Widget*>(parent_copy)->receiver(name);
+  parent_link->active_bank_adding_finished(name);
 }
