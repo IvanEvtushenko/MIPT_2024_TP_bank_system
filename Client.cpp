@@ -5,7 +5,7 @@
 [[nodiscard]] size_t Bank::Client::GetPassport() const { return passport; }
 [[nodiscard]] std::string Bank::Client::GetAddress() const { return address; }
 
-Bank::Client::Client(std::string& name, std::string& surname, std::string& address, size_t passport = 0) : name(name), surname(surname), address(address), passport(passport) {
+Bank::Client::Client(std::string& name, std::string& surname, size_t id, std::string& address, size_t passport = 0) : name(name), surname(surname), id(id), address(address), passport(passport) {
   if (passport == 0) { fine -= 0.3; }
   if (address.empty()) { fine -= 0.3; }
 }
@@ -24,7 +24,7 @@ void Bank::Client::AddDeposit(size_t id) { deposit = id; }
     case 2:
       return GetDepositId();
     default:
-      std::cout << "something went wrong\n";
+      std::cout << "something went wrong (1), bad choice account. Your index is " << choice << "\n";
       break;
   }
   return -1;
@@ -45,14 +45,14 @@ size_t Bank::MakeNewAccount(size_t choice, double count) {
       list.push_back(std::make_shared<Deposit>(count, acceptableDifference));
       break;
     default:
-      std::cout << "something went wrong\n";
+      std::cout << "something went wrong (2), bad choice account. Your index is " << choice << "\n";
       break;
   }
   return list.size() - 1;
 }
 
 void Bank::AddClient(std::string name, std::string surname, std::string address = "", size_t passport = 0) {
-  clients.push_back(std::make_unique<Client>(name, surname, address, passport));
+  clients.push_back(std::make_unique<Client>(name, surname, clients.size(), address, passport));
 }
 
 void Bank::AddAccount(size_t client_id, size_t choice_acc, double count = 0) {
@@ -67,7 +67,7 @@ void Bank::AddAccount(size_t client_id, size_t choice_acc, double count = 0) {
       clients[client_id]->AddDeposit(MakeNewAccount(choice_acc, count));
       break;
     default:
-      std::cout << "something went wrong\n";
+      std::cout << "something went wrong (3), bad choice account. Your index is " << choice_acc << "\n";
       break;
   }
 }
@@ -75,3 +75,7 @@ void Bank::AddAccount(size_t client_id, size_t choice_acc, double count = 0) {
 void Bank::AddTransaction(size_t client_id, size_t choice_tr, size_t choice_acc, double count = 0, bool abort = false, size_t operationId = 0) {
   invoker.UserInput(choice_tr, list[clients[client_id]->GetAccountId(choice_acc)], count, abort, operationId);
 }
+
+size_t Bank::ClientsCount() { return clients.size(); }
+
+size_t Bank::TransactionCount() { return invoker.TransactionCount(); }

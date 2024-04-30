@@ -22,13 +22,14 @@ set(PROJECT_SOURCES
         Account.cpp
         Command.cpp
         main.cpp
-        #        dialog.cpp
-        #        oldDialog.cpp
-        #        MainWindow.cpp
         AddBankWindow.cpp
         FirstWindow.cpp
         SecondWindow.cpp
+        AddClientWindow.cpp
+        AccountManage.cpp
         ${TS_FILES}
+        AddTransactionWindow.cpp
+        AddTransactionWindow.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

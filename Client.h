@@ -32,7 +32,9 @@ public:
         [[nodiscard]] std::string GetAddress() const;
 
     public:
-        Client(std::string&, std::string&, std::string&, size_t);
+        const size_t id;
+
+        Client(std::string&, std::string&, size_t, std::string&, size_t);
 
         void AddDebitAccount(size_t);
         void AddCreditAccount(size_t);
@@ -47,14 +49,22 @@ public:
     };
 
 private:
+    friend class AccountManage;
+    double GetAccountBalance(size_t acc) { return list[acc]->GetBalance(); }
+
     size_t MakeNewAccount(size_t, double);
 
     double commission;
     double limit;
     size_t acceptableDifference;
+
     std::vector<std::unique_ptr<Client>> clients;
+    friend class BankInterface;
 
 public:
+    size_t ClientsCount();
+    size_t TransactionCount();
+
     Bank(std::string name, double commission, double limit, size_t acceptableDifference): bank_name(name), commission(commission), limit(limit), acceptableDifference(acceptableDifference) {
       list.push_back(nullptr);
     }

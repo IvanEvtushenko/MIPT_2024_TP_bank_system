@@ -1,46 +1,57 @@
- #include "SecondWindow.h"
+#include "SecondWindow.h"
+#include "AddClientWindow.h"
+#include "AccountManage.h"
 
-Dialog::Dialog(Bank* active_bank, QWidget *parent): active_bank(active_bank), QDialog(parent) {
+BankInterface::BankInterface(Bank* active_bank, QWidget *parent): active_bank(active_bank), QWidget(parent) {
+  label = new QLabel(QString::fromStdString(active_bank->bank_name));
   create_client = new QPushButton("Создать клиента");
-  select_client.setText("Выберете банк для дальнейших действий");
-  select_client.setReadOnly(true);
+  select_client = new QLabel("Выберете клиента для дальнейших действий");
   client_menu = new QComboBox(this);
-  abort_transaction = new QPushButton("Отменить транзакцию");
+  empty = new QLabel();
+  abort_transaction = new QPushButton("Отменить транзакцию под номером ... ");
+  number = new QLineEdit();
 
-  layout_client = new QVBoxLayout(this);
-  layout_client->addWidget(create_client);
-  layout_client->addWidget(&select_client);
-  layout_client->addWidget(client_menu);
-  layout_client->addWidget(abort_transaction);
+  layout_client = new QFormLayout(this);
+  layout_client->addRow(label);
+  layout_client->addRow(create_client);
+  layout_client->addRow(select_client);
+  layout_client->addRow(client_menu);
+  layout_client->addRow(empty);
+  layout_client->addRow(abort_transaction, number);
 
-  connect(create_client, &QPushButton::clicked, this, &Dialog::ClickedButton);
-  connect(client_menu, &QComboBox::activated, this, &Dialog::MenuActivated);
-  connect(abort_transaction, &QPushButton::clicked, this, &Dialog::ClickedButton2);
+
+  active_client_adding_ex = new AddClientWindow(active_bank, this);
+
+  connect(create_client, &QPushButton::clicked, this, &BankInterface::ClickedButton);
+  connect(client_menu, &QComboBox::activated, this, &BankInterface::MenuActivated);
+  connect(abort_transaction, &QPushButton::clicked, this, &BankInterface::ClickedButton2);
 }
 
-Dialog::~Dialog() { }
+BankInterface::~BankInterface() = default;
 
 
-void Dialog::ClickedButton() {
-  qDebug("Создание клиента начато успешно!");
-  // TODO форма для ручного добавления клиента, пока заглушка
-  char name[] = "Ivan";
-  char surname[] = "Evtushenko";
-  char address[] = "Piter";
-  size_t passport = 1;
-  active_bank->AddClient(name, surname, address, 1);
+void BankInterface::active_client_adding_finished(std::string& name, std::string& surname) {
+  client_menu->addItem(QString::fromStdString(name + " " + surname));
+  this->show();
 }
 
-void Dialog::MenuActivated(int index) {
-  // Создаём новое окно и передаём туда выбранный пользователем банк и созданного клиента
-//  active_client_ex = new ;
-//  active_client_ex->setModal(true);
-//  active_client_ex->exec();
+void BankInterface::MenuActivated(int index) {
+  active_client_ex = new AccountManage(active_bank, &*active_bank->clients[index]);
+  active_client_ex->setSizeIncrement(200, 0);
+  active_client_ex->show();
 }
 
-void Dialog::ClickedButton2() {
-  qDebug("Отмена транзакции начата успешно!");
-  size_t operation_id; // id транзакции
+void BankInterface::ClickedButton() {
+  this->hide();
+  active_client_adding_ex->setSizeIncrement(200, 0);
+  active_client_adding_ex->show();
+}
+
+void BankInterface::ClickedButton2() {
+  size_t operation_id = std::stoull(number->text().toStdString());
+  if (operation_id >= active_bank->TransactionCount()) {
+    QMessageBox::information(this, tr("Ty Putin"), tr("Don't crash me"));
+    return;
+  }
   active_bank->AddTransaction(0, 0, 0, 0, true, operation_id);
-
 }

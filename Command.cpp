@@ -53,7 +53,7 @@ void Invoker::UserInput(size_t choice_tr, std::shared_ptr<Account> account, doub
   else {
     switch (choice_tr) {
       case 0:
-        AddTransaction(std::move(std::unique_ptr<ShowBalance>{new ShowBalance(account, count)}));
+        AddTransaction(std::move(std::unique_ptr<ReplenishAccount>{new ReplenishAccount(account, count)}));
         (*(listOfTransaction.end() - 1))->Execute();
         std::cout << account->GetBalance() << " executed\n";
         break;
@@ -63,13 +63,15 @@ void Invoker::UserInput(size_t choice_tr, std::shared_ptr<Account> account, doub
         std::cout << account->GetBalance() << " executed\n";
         break;
       case 2:
-        AddTransaction(std::move(std::unique_ptr<ReplenishAccount>{new ReplenishAccount(account, count)}));
+        AddTransaction(std::move(std::unique_ptr<ShowBalance>{new ShowBalance(account, count)}));
         (*(listOfTransaction.end() - 1))->Execute();
         std::cout << account->GetBalance() << " executed\n";
         break;
       default:
-        std::cout << "something went wrong\n";
+        std::cout << "something went wrong (3), bad choice choice_tr. Your index is " << choice_tr << "\n";
         break;
     }
   }
 }
+
+size_t Invoker::TransactionCount() { return listOfTransaction.size(); }

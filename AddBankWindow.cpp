@@ -26,11 +26,6 @@ AddBankWindow::AddBankWindow(std::vector<Bank*>* banks_array): banks_array(banks
 
 AddBankWindow::~AddBankWindow() {}
 
-void QWidget::closeEvent(QCloseEvent* event) {
-  static_cast<AddBankWindow*>(this)->parent_link->show();
-  acceptDrops();
-}
-
 void AddBankWindow::ClickedButton() {
   std::string name = bank_name->text().toStdString();
   double commission = std::stof(bank_commission->text().toStdString());

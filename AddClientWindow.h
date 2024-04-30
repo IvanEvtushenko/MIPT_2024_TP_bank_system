@@ -3,7 +3,7 @@
 #include <QLabel>
 #include <QFormLayout>
 #include <QPushButton>
-#include <QDialog>
+#include <QWidget>
 #include <QMdiSubWindow>
 
 #include "SecondWindow.h"
@@ -13,15 +13,20 @@
 
 #pragma once
 
-class AddClientWindow : public QDialog {
+class AddClientWindow : public QWidget {
 Q_OBJECT
 
 public:
-    explicit AddClientWindow(Bank*);
+    explicit AddClientWindow(Bank*, BankInterface*);
     ~AddClientWindow();
 
 
 private:
+    void closeEvent(QCloseEvent *event) override {
+      static_cast<AddClientWindow*>(this)->parent_link->show();
+      acceptDrops();
+    }
+
     Bank* active_bank;
 
     QGroupBox* main_group;
@@ -41,8 +46,6 @@ private:
 public:
     BankInterface* parent_link= nullptr;
     QPushButton* is_done;
-
-    void RebindParent(BankInterface*);
 
 public slots:
     void ClickedButton();

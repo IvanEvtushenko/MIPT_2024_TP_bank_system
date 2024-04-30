@@ -36,5 +36,5 @@ void Widget::MenuActivated(int index) {
   // Создаём новое окно и передаём туда выбранный пользователем банк
   active_bank_ex = new BankInterface((*banks_array)[index]);
   active_bank_ex->show();
-  active_bank_ex->setSizeIncrement(120, 30);
+  active_bank_ex->setSizeIncrement(120, 0);
 }

@@ -61,6 +61,8 @@ private:
     void AddTransaction(std::unique_ptr<Transaction>);
 
 public:
+    size_t TransactionCount();
+
     explicit Invoker() {};
     void UserInput(size_t, std::shared_ptr<Account>, double, bool, size_t);
 };

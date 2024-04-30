@@ -18,6 +18,11 @@ public:
     ~AddBankWindow();
 
 private:
+    void closeEvent(QCloseEvent *event) override {
+      static_cast<AddBankWindow*>(this)->parent_link->show();
+      acceptDrops();
+    }
+
     std::vector<Bank*>* banks_array;
 
     QGroupBox* main_group;

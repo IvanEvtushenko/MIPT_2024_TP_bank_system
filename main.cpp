@@ -1,29 +1,30 @@
 #include "AddBankWindow.h"
 #include "FirstWindow.h"
+#include "SecondWindow.h"
+
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
 
 int main(int argc, char *argv[])
 {
-  QApplication a(argc, argv);
+  QApplication app(argc, argv);
 
   QTranslator translator;
   const QStringList uiLanguages = QLocale::system().uiLanguages();
   for (const QString &locale : uiLanguages) {
     const QString baseName = "try3_" + QLocale(locale).name();
     if (translator.load(":/i18n/" + baseName)) {
-      a.installTranslator(&translator);
+      app.installTranslator(&translator);
       break;
     }
   }
   std::vector<Bank*> banks_array;
-  banks_array.push_back(new Bank("efr", 234, 324, 234));
-  AddBankWindow add(&banks_array);
-  Widget wid(&banks_array, &add);
-  add.parent_copy = &wid;
+  AddBankWindow add_bank(&banks_array);
+  Widget main_widget(&banks_array, &add_bank);
+  add_bank.parent_link = &main_widget;
 
-  wid.setSizeIncrement(110, 30);
-  wid.show();
-  return a.exec();
+  main_widget.setSizeIncrement(110, 30);
+  main_widget.show();
+  return app.exec();
 }

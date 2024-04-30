@@ -3,27 +3,41 @@
 #include <QComboBox>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QLabel>
+#include <QFormLayout>
+#include <QMessageBox>
+
 #include "Client.h"
 
-class Dialog : public QDialog {
+#pragma once
+
+class BankInterface : public QWidget {
 Q_OBJECT
 
 private:
     Bank* active_bank;
 
 public:
-    explicit Dialog(Bank*, QWidget *parent = nullptr);
+    explicit BankInterface(Bank*, QWidget *parent = nullptr);
 
-    ~Dialog();
+    ~BankInterface();
+
+    void active_client_adding_finished(std::string&, std::string&);
 
 
 private:
+    QLabel* label;
+    QLineEdit* number;
+    QLabel* empty;
     QPushButton* create_client;
-    QLineEdit select_client;
+    QLabel* select_client;
     QComboBox* client_menu;
     QPushButton* abort_transaction;
 
-    QVBoxLayout* layout_client;
+    QWidget* active_client_adding_ex;
+    QWidget* active_client_ex;
+
+    QFormLayout* layout_client;
 
 public slots:
     void ClickedButton();
