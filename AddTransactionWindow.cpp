@@ -39,7 +39,6 @@ void AddingTransaction::AccTypesMenuActivated(int index) { acc_types_condition =
 void AddingTransaction::TransTypesMenuActivated(int index) { trans_types_condition = index; }
 
 void AddingTransaction::ClickedButton() {
-  if (acc_types_condition == -1 or trans_types_condition == -1) return;
   double count = std::stod(amount->text().toStdString());
   active_bank->AddTransaction(active_client->id, trans_types_condition, acc_types_condition, count, false, 0);
   parent_link->active_trans_adding_finished();

@@ -39,9 +39,9 @@ private:
     QFormLayout* layout_form;
 
     QComboBox* acc_types;
-    int acc_types_condition = -1;
+    int acc_types_condition = 0;
     QComboBox* trans_types;
-    int trans_types_condition = -1;
+    int trans_types_condition = 0;
     QLineEdit* amount;
 
     AccountManage* parent_link;

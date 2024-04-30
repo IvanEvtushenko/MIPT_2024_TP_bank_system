@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(try8 VERSION 0.1 LANGUAGES CXX)
+project(BankSystem_TP VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -14,26 +14,24 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
 
-set(TS_FILES try4_ru_RU.ts)
-
 set(PROJECT_SOURCES
+        main.cpp
         Client.cpp
-        CustomError.cpp
         Account.cpp
         Command.cpp
-        main.cpp
-        AddBankWindow.cpp
+        CustomError.cpp
         FirstWindow.cpp
         SecondWindow.cpp
+        AddBankWindow.cpp
         AddClientWindow.cpp
         AccountManage.cpp
-        ${TS_FILES}
         AddTransactionWindow.cpp
         AddTransactionWindow.h
+        ${TS_FILES}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(try8
+    qt_add_executable(BankSystem_TP
             MANUAL_FINALIZATION
             ${PROJECT_SOURCES}
     )
@@ -45,13 +43,13 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 else()
     if(ANDROID)
-        add_library(try8 SHARED
+        add_library(BankSystem_TP SHARED
                 ${PROJECT_SOURCES}
         )
         # Define properties for Android with Qt 5 after find_package() calls as:
         #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(try8
+        add_executable(BankSystem_TP
                 ${PROJECT_SOURCES}
         )
     endif()
@@ -59,9 +57,9 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(try8 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(BankSystem_TP PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-set_target_properties(try8 PROPERTIES
+set_target_properties(BankSystem_TP PROPERTIES
         MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
         MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
         MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -70,5 +68,5 @@ set_target_properties(try8 PROPERTIES
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(try8)
+    qt_finalize_executable(BankSystem_TP)
 endif()
