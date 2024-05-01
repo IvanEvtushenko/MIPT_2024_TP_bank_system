@@ -1,5 +1,5 @@
 #include "AddBankWindow.h"
-#include "FirstWindow.h"
+#include "BankMenu.h"
 
 AddBankWindow::AddBankWindow(std::vector<Bank*>* banks_array): banks_array(banks_array), QWidget(nullptr) {
   label_bank_name = new QLabel("Введите название банка");

@@ -5,7 +5,7 @@
 #include <QPushButton>
 #include <QDialog>
 #include <QMdiSubWindow>
-#include "FirstWindow.h"
+#include "BankMenu.h"
 
 #include "Client.h"
 #pragma once

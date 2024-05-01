@@ -6,7 +6,7 @@
 #include <QWidget>
 #include <QMdiSubWindow>
 
-#include "SecondWindow.h"
+#include "BankInterface.h"
 
 #include "Client.h"
 #include "Account.h"

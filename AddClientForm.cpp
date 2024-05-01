@@ -1,5 +1,5 @@
 #include "AddClientWindow.h"
-#include "FirstWindow.h"
+#include "BankMenu.h"
 
 AddClientWindow::AddClientWindow(Bank* active_bank, BankInterface* parent): active_bank(active_bank), parent_link(parent), QWidget(nullptr) {
   label_client_name = new QLabel("Введите имя клиента");

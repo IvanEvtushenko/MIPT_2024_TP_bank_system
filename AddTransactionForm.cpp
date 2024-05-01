@@ -1,5 +1,5 @@
-#include "AddTransactionWindow.h"
-#include "FirstWindow.h"
+#include "AddingTransactionForm.h"
+#include "BankMenu.h"
 
 AddingTransaction::AddingTransaction(Bank* active_bank, Bank::Client* active_client, AccountManage* parent): active_bank(active_bank), active_client(active_client), parent_link(parent), QWidget(nullptr) {
   label_client_name = new QLabel(QString::fromStdString(active_client->GetName().first + " " + active_client->GetName().second));
