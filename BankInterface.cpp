@@ -64,7 +64,9 @@ void BankInterface::ClickedButton2() {
       std::string massage = "Клиент, " + active_bank->clients[error.getClientID()]->GetName().first + " " +
                             active_bank->clients[error.getClientID()]->GetName().second + ", совершивший операцию №" +
                             std::to_string(operation_id) +
-                            ", не имеет на счету достаточно средств для погашения задолженности, образовавшейся, в связи с её отменой. Соответственно, банк принял решение составить иск об удержании средств и направить его в суд на сумму " +
+                            ", не имеет на счету достаточно средств для погашения задолженности, образовавшейся, "
+                            "в связи с её отменой. Соответственно, банк принял решение составить иск об удержании "
+                            "средств и направить его в суд на сумму " +
                             std::to_string(error.getArrears()) + " рублей. Его счета заморожены";
       active_bank->black_list.push_back(error.getClientID());
       QMessageBox::warning(this, tr("Подача заявления в суд"), tr(massage.c_str()));
