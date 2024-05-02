@@ -19,8 +19,7 @@ int main(int argc, char *argv[])
       break;
     }
   }
-  std::vector<Bank*> banks_array;
-  BankMenu* main_widget = new BankMenu(&banks_array, nullptr);
+  BankMenu* main_widget = new BankMenu(nullptr);
 
   main_widget->setSizeIncrement(110, 30);
   main_widget->show();

@@ -3,7 +3,7 @@
 #include "BankInterface.h"
 #include <string>
 
-BankMenu::BankMenu(std::vector<Bank*>* banks_array, QWidget* parent): banks_array(banks_array), QWidget(parent) {
+BankMenu::BankMenu(QWidget* parent): banks_array(0), QWidget(parent) {
   create_bank = new QPushButton("Cоздать банк");
   select_bank = new QLabel("Выберете банк для дальнейших действий");
   bank_menu = new QComboBox(this);
@@ -13,7 +13,7 @@ BankMenu::BankMenu(std::vector<Bank*>* banks_array, QWidget* parent): banks_arra
   layout_bank->addWidget(select_bank);
   layout_bank->addWidget(bank_menu);
 
-  active_bank_adding_ex = new AddBank(banks_array, this);
+  active_bank_adding_ex = new AddBank(&banks_array, this);
 
   connect(create_bank, &QPushButton::clicked, this, &BankMenu::ClickedButton);
   connect(bank_menu, &QComboBox::activated, this, &BankMenu::MenuActivated);
@@ -35,7 +35,7 @@ void BankMenu::ClickedButton() {
 }
 
 void BankMenu::MenuActivated(int index) {
-  active_bank_ex = new BankInterface((*banks_array)[index]);
+  active_bank_ex = new BankInterface(banks_array[index]);
   active_bank_ex->show();
   active_bank_ex->setSizeIncrement(120, 0);
 }

@@ -11,8 +11,11 @@
 class Bank {
 private:
     std::vector<std::shared_ptr<Account>> list;
-//                                          ^ 0 - поле, под которым ничего не лежит, и проект упадёт, если к нему обратиться
+//                                          ^ 0 - поле, под которым ничего не лежит
+    std::vector<size_t> black_list;
     Invoker invoker;
+
+    bool IsBlack(size_t id);
 
 public:
     std::string bank_name;
@@ -52,7 +55,7 @@ private:
     friend class AccountManage;
     double GetAccountBalance(size_t acc) { return list[acc]->GetBalance(); }
 
-    size_t MakeNewAccount(size_t, double);
+    size_t MakeNewAccount(size_t, double, size_t client_id);
 
     double commission;
     double limit;
@@ -60,6 +63,7 @@ private:
 
     std::vector<std::unique_ptr<Client>> clients;
     friend class BankInterface;
+    friend class Invoker;
 
 public:
     size_t ClientsCount();

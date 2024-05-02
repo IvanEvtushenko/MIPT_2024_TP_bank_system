@@ -19,11 +19,9 @@ private:
 
 public:
     explicit BankInterface(Bank*, QWidget *parent = nullptr);
-
     ~BankInterface();
 
     void active_client_adding_finished(std::string&, std::string&);
-
 
 private:
     QLabel* label;

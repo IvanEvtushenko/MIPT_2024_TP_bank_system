@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QComboBox>
 #include <QMdiSubWindow>
+#include <QMessageBox>
 
 
 #include "AccountManage.h"

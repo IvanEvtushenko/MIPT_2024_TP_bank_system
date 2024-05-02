@@ -20,7 +20,7 @@ class BankMenu : public QWidget {
 Q_OBJECT
 
 public:
-    BankMenu(std::vector<Bank*>*, QWidget *parent);
+    BankMenu(QWidget *parent);
     ~BankMenu();
 
     void active_bank_adding_finished(std::string&);
@@ -30,7 +30,7 @@ private:
     QPushButton* create_bank;
     QLabel* select_bank;
 
-    std::vector<Bank*>* banks_array;
+    std::vector<Bank*> banks_array;
 
     QVBoxLayout* layout_bank;
 

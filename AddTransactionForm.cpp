@@ -1,5 +1,6 @@
 #include "AddTransactionForm.h"
 #include "BankMenu.h"
+#include "CustomError.h"
 
 AddingTransaction::AddingTransaction(Bank* active_bank, Bank::Client* active_client, AccountManage* parent): active_bank(active_bank), active_client(active_client), parent_link(parent), QWidget(nullptr) {
   label_client_name = new QLabel(QString::fromStdString(active_client->GetName().first + " " + active_client->GetName().second));
@@ -40,7 +41,15 @@ void AddingTransaction::TransTypesMenuActivated(int index) { trans_types_conditi
 
 void AddingTransaction::ClickedButton() {
   double count = std::stod(amount->text().toStdString());
-  active_bank->AddTransaction(active_client->id, trans_types_condition, acc_types_condition, count, false, 0);
-  parent_link->active_trans_adding_finished();
+  try {
+    active_bank->AddTransaction(active_client->id, trans_types_condition, acc_types_condition, count, false, 0);
+  } catch (CustomError error) {
+    if (error.getErrorCode() == 0) {
+      QMessageBox::warning(this, tr("Ошибка снятия суммы"), tr("На балансе недостаточно средств"));
+    } else if (error.getErrorCode() == 1) {
+      QMessageBox::warning(this, tr("Ошибка снятия суммы"), tr("На данный момент невозможно снять деньги с депозита. Пожалуйста, попробуйте позже"));
+    } else { std::cout << "Ну... тяжело" << std::endl; } // такого произойти не должно
+  }
+  parent_link->update_account_balance();
   this->close();
 }

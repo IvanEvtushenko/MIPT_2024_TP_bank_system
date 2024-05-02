@@ -20,7 +20,7 @@ public:
     explicit AccountManage(Bank*, Bank::Client*);
     ~AccountManage();
 
-    void active_trans_adding_finished();
+    void update_account_balance();
 
 private:
     QLabel* label;

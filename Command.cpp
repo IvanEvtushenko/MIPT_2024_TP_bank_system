@@ -2,7 +2,6 @@
 
 #pragma once
 
-
 WithdrawMoney::WithdrawMoney(std::shared_ptr<Account> account, double count): account(account), count(count) {}
 double WithdrawMoney::Execute() {
   try { account->ReduceBalance(count); }
@@ -10,6 +9,7 @@ double WithdrawMoney::Execute() {
     std::cout << ex.what() << "\n";
     count = 0;
     Abort();
+    throw;
   }
   return account->GetBalance();
 }
@@ -31,9 +31,9 @@ double ReplenishAccount::Abort() {
   status = false;
   try { account->ReduceBalance(count); }
   catch (CustomError& ex) {
+    account->AssignBalance(0);
     double arrears = count - account->GetBalance();
-    throw CustomError("the client has a fine now", 2, arrears);
-    // TODO Добавить клиенту счёт с отрицательным балансом, который нужно будет погасить. На все остальные же счета будет наложен штраф 80%
+    throw CustomError("the client has a fine now", 2, arrears, this->account->owner_id );
   }
   return account->GetBalance();
 }

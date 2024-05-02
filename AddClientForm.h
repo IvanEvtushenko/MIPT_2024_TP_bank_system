@@ -29,8 +29,6 @@ private:
 
     Bank* active_bank;
 
-    QGroupBox* main_group;
-
     QLabel* label_client_name;
     QLabel* label_client_surname;
     QLabel* label_client_address;

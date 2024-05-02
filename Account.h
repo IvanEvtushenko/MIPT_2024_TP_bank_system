@@ -6,7 +6,14 @@
 #pragma once
 
 class Account {
+    size_t owner_id;
+    friend class WithdrawMoney;
+    friend class ReplenishAccount;
+    friend class ShowBalance;
+
 public:
+    Account(size_t owner_id): owner_id(owner_id) {}
+
     virtual Account& IncreaseBalance(double) = 0;
     virtual Account& ReduceBalance(double) = 0;
     virtual Account& AssignBalance(double) = 0;
@@ -20,13 +27,12 @@ public:
 class DebitAccount: public Account {
 protected:
     double balance = 0;
-//    const size_t id = 0;
 
 private:
     const double precision = 0.00000001;
 
 public:
-    explicit DebitAccount(const double balance): balance(balance) {}
+    explicit DebitAccount(size_t owner_id, const double balance): Account(owner_id), balance(balance) {}
 
     DebitAccount& IncreaseBalance(double) override;
     DebitAccount& ReduceBalance(double) override;
@@ -39,13 +45,14 @@ public:
 class CreditAccount: public Account {
 protected:
     double balance = 0;
+
 private:
     const double precision = 0.00000001;
     double limit = 0;
     double commission = 0;
 
 public:
-    CreditAccount (const double balance, const double limit, const double commission) : balance(balance), limit(limit), commission(commission) {}
+    CreditAccount (size_t owner_id, const double balance, const double limit, const double commission): Account(owner_id), balance(balance), limit(limit), commission(commission) {}
 
     CreditAccount& IncreaseBalance(double) override;
     CreditAccount& ReduceBalance(double) override;
@@ -62,7 +69,7 @@ private:
     size_t acceptableDifference;
 
 public:
-    Deposit(const double count, const size_t timeForBlock) : DebitAccount(count), acceptableDifference(timeForBlock), startTime(std::time_t(nullptr)) {}
+    Deposit(size_t owner_id, const double count, const size_t timeForBlock): DebitAccount(owner_id, count), acceptableDifference(timeForBlock), startTime(std::time_t(nullptr)) {}
 
     Deposit& IncreaseBalance(double) override;
     Deposit& ReduceBalance(double) override;

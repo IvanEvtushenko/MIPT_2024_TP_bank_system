@@ -48,10 +48,22 @@ void BankInterface::ClickedButton() {
 }
 
 void BankInterface::ClickedButton2() {
-  size_t operation_id = std::stoull(number->text().toStdString());
-  if (operation_id >= active_bank->TransactionCount()) {
-    QMessageBox::information(this, tr("Ty Putin"), tr("Don't crash me"));
+  if (number->displayText().isEmpty()) {
+    QMessageBox::information(this, tr(""), tr(""));
     return;
   }
-  active_bank->AddTransaction(0, 0, 0, 0, true, operation_id);
+  size_t operation_id = std::stoull(number->text().toStdString());
+  if (operation_id >= active_bank->TransactionCount()) {
+    QMessageBox::warning(this, tr("Ошибка отмены транзакции"), tr("Транзакции с введённым индексом не существует"));
+    return;
+  }
+  try {
+    active_bank->AddTransaction(0, 0, 0, 0, true, operation_id);
+  } catch (CustomError error) {
+    if (error.getErrorCode() == 2) {
+      std::string massage = "Клиент, " + active_bank->clients[error.getClientID()]->GetName().first + " " + active_bank->clients[error.getClientID()]->GetName().second + ", совершивший операцию №" + std::to_string(operation_id) + ", не имеет на счету достаточно средств для погашения задолженности, образовавшейся, в связи с её отменой. Соответственно, банк принял решение составить иск об удержании средств и направить его в суд на сумму " + std::to_string(error.getArrears()) + " рублей. Его счета заморожены";
+      active_bank->black_list.push_back(error.getClientID());
+      QMessageBox::warning(this, tr("Подача заявления в суд"), tr(massage.c_str()));
+    }
+  }
 }
