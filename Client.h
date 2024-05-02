@@ -22,6 +22,7 @@ public:
 
     class Client {
     private:
+        friend class AddingTransaction;
         std::string name;
         std::string surname;
         std::string address;

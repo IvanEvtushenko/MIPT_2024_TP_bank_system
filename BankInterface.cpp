@@ -49,7 +49,7 @@ void BankInterface::ClickedButton() {
 
 void BankInterface::ClickedButton2() {
   if (number->displayText().isEmpty()) {
-    QMessageBox::information(this, tr(""), tr(""));
+    QMessageBox::information(this, tr("Ошибка заполнения формы"), tr("Убедитесь, что поле заполнено корректно"));
     return;
   }
   size_t operation_id = std::stoull(number->text().toStdString());

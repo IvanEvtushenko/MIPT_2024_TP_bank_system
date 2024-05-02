@@ -2,6 +2,7 @@
 #include "BankMenu.h"
 #include "CustomError.h"
 
+
 AddingTransaction::AddingTransaction(Bank* active_bank, Bank::Client* active_client, AccountManage* parent): active_bank(active_bank), active_client(active_client), parent_link(parent), QWidget(nullptr) {
   label_client_name = new QLabel(QString::fromStdString(active_client->GetName().first + " " + active_client->GetName().second));
   acc_types_label = new QLabel("Выберете тип счёта к которому хотите применить операцию");
@@ -40,7 +41,11 @@ void AddingTransaction::AccTypesMenuActivated(int index) { acc_types_condition =
 void AddingTransaction::TransTypesMenuActivated(int index) { trans_types_condition = index; }
 
 void AddingTransaction::ClickedButton() {
-  double count = std::stod(amount->text().toStdString());
+  if (amount->displayText().isEmpty()) {
+    QMessageBox::information(this, tr("Ошибка заполнения формы"), tr("Убедитесь, что поле заполнено корректно"));
+    return;
+  }
+  double count = std::atof(("0" + amount->text().toStdString()).data()) * active_client->fine;
   try {
     active_bank->AddTransaction(active_client->id, trans_types_condition, acc_types_condition, count, false, 0);
   } catch (CustomError error) {

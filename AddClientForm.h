@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QWidget>
 #include <QMdiSubWindow>
+#include <QMessageBox>
 
 #include "BankInterface.h"
 
@@ -40,6 +41,8 @@ private:
     QLineEdit* client_passport;
 
     QFormLayout* layout_lines;
+
+    int counter = 0;
 
 public:
     BankInterface* parent_link= nullptr;

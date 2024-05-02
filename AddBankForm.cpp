@@ -29,10 +29,14 @@ AddBank::AddBank(std::vector<Bank*>* banks_array, BankMenu* parent): banks_array
 AddBank::~AddBank() = default;
 
 void AddBank::ClickedButton() {
+  if (bank_name->displayText().isEmpty() || bank_commission->displayText().isEmpty() || bank_limit->displayText().isEmpty() || bank_time_limit->displayText().isEmpty()) {
+    QMessageBox::warning(this, tr("Ошибка заполнения формы"), tr("Убедитесь, что все поля заполнены корректно"));
+    return;
+  }
   std::string name = bank_name->text().toStdString();
-  double commission = std::stof(bank_commission->text().toStdString());
-  double time = std::stof(bank_limit->text().toStdString());
-  size_t time_limit = std::stoull(bank_time_limit->text().toStdString());
+  double commission = std::atof(("0" + bank_commission->text().toStdString()).data());
+  double time = std::atof(("0" + bank_limit->text().toStdString()).data());
+  size_t time_limit = std::atoll(("0" + bank_time_limit->text().toStdString()).data());
   banks_array->push_back(new Bank(name, commission, time, time_limit));
   parent_link->active_bank_adding_finished(name);
 }

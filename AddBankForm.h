@@ -6,6 +6,7 @@
 #include <QDialog>
 #include <QMdiSubWindow>
 #include "BankMenu.h"
+#include <QMessageBox>
 
 #include "Client.h"
 #pragma once
