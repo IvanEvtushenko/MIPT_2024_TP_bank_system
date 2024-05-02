@@ -1,5 +1,5 @@
-#include "SecondWindow.h"
-#include "AddClientWindow.h"
+#include "BankInterface.h"
+#include "AddClientForm.h"
 #include "AccountManage.h"
 
 BankInterface::BankInterface(Bank* active_bank, QWidget *parent): active_bank(active_bank), QWidget(parent) {
@@ -20,7 +20,7 @@ BankInterface::BankInterface(Bank* active_bank, QWidget *parent): active_bank(ac
   layout_client->addRow(abort_transaction, number);
 
 
-  active_client_adding_ex = new AddClientWindow(active_bank, this);
+  active_client_adding_ex = new AddClient(active_bank, this);
 
   connect(create_client, &QPushButton::clicked, this, &BankInterface::ClickedButton);
   connect(client_menu, &QComboBox::activated, this, &BankInterface::MenuActivated);

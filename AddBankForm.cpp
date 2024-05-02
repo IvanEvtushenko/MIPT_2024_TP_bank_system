@@ -1,7 +1,7 @@
-#include "AddBankWindow.h"
+#include "AddBankForm.h"
 #include "BankMenu.h"
 
-AddBankWindow::AddBankWindow(std::vector<Bank*>* banks_array): banks_array(banks_array), QWidget(nullptr) {
+AddBank::AddBank(std::vector<Bank*>* banks_array, BankMenu* parent): banks_array(banks_array), QWidget(nullptr) {
   label_bank_name = new QLabel("Введите название банка");
   label_bank_commission = new QLabel("Установите комиссию банка");
   label_bank_limit = new QLabel("Установите лимит отрицательного баланса");
@@ -21,12 +21,14 @@ AddBankWindow::AddBankWindow(std::vector<Bank*>* banks_array): banks_array(banks
   layout_lines->addRow(label_bank_time_limit, bank_time_limit);
   layout_lines->addRow(is_done);
 
-  connect(is_done, &QPushButton::clicked, this, &AddBankWindow::ClickedButton);
+  parent_link = parent;
+
+  connect(is_done, &QPushButton::clicked, this, &AddBank::ClickedButton);
 }
 
-AddBankWindow::~AddBankWindow() {}
+AddBank::~AddBank() = default;
 
-void AddBankWindow::ClickedButton() {
+void AddBank::ClickedButton() {
   std::string name = bank_name->text().toStdString();
   double commission = std::stof(bank_commission->text().toStdString());
   double time = std::stof(bank_limit->text().toStdString());

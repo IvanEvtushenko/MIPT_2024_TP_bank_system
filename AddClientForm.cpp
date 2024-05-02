@@ -1,7 +1,7 @@
-#include "AddClientWindow.h"
+#include "AddClientForm.h"
 #include "BankMenu.h"
 
-AddClientWindow::AddClientWindow(Bank* active_bank, BankInterface* parent): active_bank(active_bank), parent_link(parent), QWidget(nullptr) {
+AddClient::AddClient(Bank* active_bank, BankInterface* parent): active_bank(active_bank), parent_link(parent), QWidget(nullptr) {
   label_client_name = new QLabel("Введите имя клиента");
   label_client_surname = new QLabel("Введите фамилию клиента");
   label_client_address = new QLabel("Введите адрес клиента");
@@ -21,13 +21,13 @@ AddClientWindow::AddClientWindow(Bank* active_bank, BankInterface* parent): acti
   layout_lines->addRow(label_client_passport, client_passport);
   layout_lines->addRow(is_done);
 
-  connect(is_done, &QPushButton::clicked, this, &AddClientWindow::ClickedButton);
+  connect(is_done, &QPushButton::clicked, this, &AddClient::ClickedButton);
 }
 
-AddClientWindow::~AddClientWindow() = default;
+AddClient::~AddClient() = default;
 
 
-void AddClientWindow::ClickedButton() {
+void AddClient::ClickedButton() {
   std::string name = client_name->text().toStdString();
   std::string surname = client_surname->text().toStdString();
   std::string address = client_address->text().toStdString();

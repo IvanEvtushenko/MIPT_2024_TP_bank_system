@@ -10,16 +10,16 @@
 #include "Client.h"
 #pragma once
 
-class AddBankWindow : public QWidget {
+class AddBank : public QWidget {
 Q_OBJECT
 
 public:
-    explicit AddBankWindow(std::vector<Bank*>*);
-    ~AddBankWindow();
+    explicit AddBank(std::vector<Bank*>*, BankMenu*);
+    ~AddBank();
 
 private:
     void closeEvent(QCloseEvent *event) override {
-      static_cast<AddBankWindow*>(this)->parent_link->show();
+      parent_link->show();
       acceptDrops();
     }
 
@@ -40,7 +40,7 @@ private:
     QFormLayout* layout_lines;
 
 public:
-    Widget* parent_link;
+    BankMenu* parent_link;
     QPushButton* is_done;
 
 public slots:

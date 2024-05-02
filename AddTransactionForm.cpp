@@ -1,4 +1,4 @@
-#include "AddingTransactionForm.h"
+#include "AddTransactionForm.h"
 #include "BankMenu.h"
 
 AddingTransaction::AddingTransaction(Bank* active_bank, Bank::Client* active_client, AccountManage* parent): active_bank(active_bank), active_client(active_client), parent_link(parent), QWidget(nullptr) {
@@ -32,7 +32,7 @@ AddingTransaction::AddingTransaction(Bank* active_bank, Bank::Client* active_cli
   connect(trans_types, &QComboBox::activated, this, &AddingTransaction::TransTypesMenuActivated);
 }
 
-AddingTransaction::~AddingTransaction() {}
+AddingTransaction::~AddingTransaction() = default;
 
 
 void AddingTransaction::AccTypesMenuActivated(int index) { acc_types_condition = index; }

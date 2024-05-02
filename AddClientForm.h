@@ -13,17 +13,17 @@
 
 #pragma once
 
-class AddClientWindow : public QWidget {
+class AddClient : public QWidget {
 Q_OBJECT
 
 public:
-    explicit AddClientWindow(Bank*, BankInterface*);
-    ~AddClientWindow();
+    explicit AddClient(Bank*, BankInterface*);
+    ~AddClient();
 
 
 private:
     void closeEvent(QCloseEvent *event) override {
-      static_cast<AddClientWindow*>(this)->parent_link->show();
+      static_cast<AddClient*>(this)->parent_link->show();
       acceptDrops();
     }
 

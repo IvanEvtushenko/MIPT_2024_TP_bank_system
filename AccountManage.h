@@ -18,12 +18,10 @@ private:
 
 public:
     explicit AccountManage(Bank*, Bank::Client*);
-
     ~AccountManage();
 
     void active_trans_adding_finished();
 
-//    void active_tr_adding_finished(std::string&, std::string&);
 private:
     QLabel* label;
     QLabel* label_debt;

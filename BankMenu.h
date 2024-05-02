@@ -16,21 +16,20 @@
 
 #pragma once
 
-class Widget : public QWidget {
+class BankMenu : public QWidget {
 Q_OBJECT
 
 public:
-    Widget(std::vector<Bank*>*, QWidget*, QWidget *parent = nullptr);
-    ~Widget();
+    BankMenu(std::vector<Bank*>*, QWidget *parent);
+    ~BankMenu();
 
     void active_bank_adding_finished(std::string&);
 
-protected:
-    QComboBox* bank_menu;
-
 private:
+    QComboBox* bank_menu;
     QPushButton* create_bank;
     QLabel* select_bank;
+
     std::vector<Bank*>* banks_array;
 
     QVBoxLayout* layout_bank;

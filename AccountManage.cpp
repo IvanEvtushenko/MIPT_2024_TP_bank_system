@@ -1,5 +1,5 @@
 #include "AccountManage.h"
-#include "AddTransactionWindow.h"
+#include "AddTransactionForm.h"
 
 AccountManage::AccountManage(Bank* active_bank, Bank::Client* active_client): active_bank(active_bank), active_client(active_client), QWidget(nullptr) {
   label = new QLabel(QString::fromStdString(active_client->GetName().first + " " + active_client->GetName().second));

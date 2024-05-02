@@ -1,6 +1,6 @@
-#include "AddBankWindow.h"
-#include "FirstWindow.h"
-#include "SecondWindow.h"
+#include "AddBankForm.h"
+#include "BankMenu.h"
+#include "BankInterface.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -20,11 +20,9 @@ int main(int argc, char *argv[])
     }
   }
   std::vector<Bank*> banks_array;
-  AddBankWindow add_bank(&banks_array);
-  Widget main_widget(&banks_array, &add_bank);
-  add_bank.parent_link = &main_widget;
+  BankMenu* main_widget = new BankMenu(&banks_array, nullptr);
 
-  main_widget.setSizeIncrement(110, 30);
-  main_widget.show();
+  main_widget->setSizeIncrement(110, 30);
+  main_widget->show();
   return app.exec();
 }

@@ -14,19 +14,22 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
 
+add_compile_options(-fsanitize=address)
+add_link_options(-fsanitize=address)
+
 set(PROJECT_SOURCES
         main.cpp
         Client.cpp
         Account.cpp
         Command.cpp
         CustomError.cpp
-        FirstWindow.cpp
-        SecondWindow.cpp
-        AddBankWindow.cpp
-        AddClientWindow.cpp
+        BankMenu.cpp
+        BankInterface.cpp
+        AddBankForm.cpp
+        AddClientForm.cpp
         AccountManage.cpp
-        AddTransactionWindow.cpp
-        AddTransactionWindow.h
+        AddTransactionForm.cpp
+        AddTransactionForm.h
         ${TS_FILES}
 )
 
