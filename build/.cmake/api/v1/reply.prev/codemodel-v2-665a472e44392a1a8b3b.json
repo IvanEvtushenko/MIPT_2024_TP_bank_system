@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Release-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "BankSystem_TP",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "BankSystem_TP::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BankSystem_TP-Release-194b4a65597a635c8ec4.json",
+					"name" : "BankSystem_TP",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "BankSystem_TP_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BankSystem_TP_autogen-Release-b20b63b6691e3fcbc900.json",
+					"name" : "BankSystem_TP_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "BankSystem_TP_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BankSystem_TP_autogen_timestamp_deps-Release-1a81b2187437b90a0f02.json",
+					"name" : "BankSystem_TP_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/ivanev/build-BankSystem_TP-Desktop-Release",
+		"source" : "/home/ivanev/BankSystem_TP"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

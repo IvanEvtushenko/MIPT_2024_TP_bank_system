@@ -29,7 +29,8 @@ AddBank::AddBank(std::vector<Bank*>* banks_array, BankMenu* parent): banks_array
 AddBank::~AddBank() = default;
 
 void AddBank::ClickedButton() {
-  if (bank_name->displayText().isEmpty() || bank_commission->displayText().isEmpty() || bank_limit->displayText().isEmpty() || bank_time_limit->displayText().isEmpty()) {
+  if (bank_name->displayText().isEmpty() || bank_commission->displayText().isEmpty() ||
+      bank_limit->displayText().isEmpty() || bank_time_limit->displayText().isEmpty()) {
     QMessageBox::warning(this, tr("Ошибка заполнения формы"), tr("Убедитесь, что все поля заполнены корректно"));
     return;
   }

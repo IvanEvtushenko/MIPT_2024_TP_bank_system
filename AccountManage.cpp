@@ -53,17 +53,20 @@ void AccountManage::AddTransaction() {
 
 void AccountManage::update_account_balance() {
   if (active_bank->list[active_client->GetDebitAccountId()]) {
-    debt->setText(QString::fromStdString(std::to_string(active_bank->list[active_client->GetDebitAccountId()]->GetBalance())));
+    debt->setText(QString::fromStdString(
+            std::to_string(active_bank->list[active_client->GetDebitAccountId()]->GetBalance())));
     debt->setEnabled(false);
     debt->setFlat(true);
   } else { debt->setText("У клиента ещё нет дебетового счёта"); }
   if (active_bank->list[active_client->GetCreditAccountId()]) {
-    credit->setText(QString::fromStdString(std::to_string(active_bank->list[active_client->GetCreditAccountId()]->GetBalance())));
+    credit->setText(QString::fromStdString(
+            std::to_string(active_bank->list[active_client->GetCreditAccountId()]->GetBalance())));
     credit->setEnabled(false);
     credit->setFlat(true);
   } else { credit->setText("У клиента ещё нет кредитного счёта"); }
   if (active_bank->list[active_client->GetDepositId()]) {
-    dep->setText(QString::fromStdString(std::to_string(active_bank->list[active_client->GetDepositId()]->GetBalance())));
+    dep->setText(
+            QString::fromStdString(std::to_string(active_bank->list[active_client->GetDepositId()]->GetBalance())));
     dep->setEnabled(false);
     dep->setFlat(true);
   } else { dep->setText("У клиента ещё нет депозита"); }

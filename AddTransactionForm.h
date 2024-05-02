@@ -7,7 +7,6 @@
 #include <QMdiSubWindow>
 #include <QMessageBox>
 
-
 #include "AccountManage.h"
 
 #include "Client.h"

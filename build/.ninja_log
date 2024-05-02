@@ -1,0 +1,18 @@
+# ninja log v5
+1	480	1714668275849077157	BankSystem_TP_autogen/timestamp	5607cdaefc028603
+1	480	1714668275849077157	BankSystem_TP_autogen/mocs_compilation.cpp	5607cdaefc028603
+1	480	1714668275849077157	/home/ivanev/build-BankSystem_TP-Desktop-Release/BankSystem_TP_autogen/timestamp	5607cdaefc028603
+1	480	1714668275849077157	/home/ivanev/build-BankSystem_TP-Desktop-Release/BankSystem_TP_autogen/mocs_compilation.cpp	5607cdaefc028603
+482	994	1714668276373076216	CMakeFiles/BankSystem_TP.dir/CustomError.cpp.o	57ee49e20c7ec70a
+481	1496	1714668276873075317	CMakeFiles/BankSystem_TP.dir/Account.cpp.o	75d1a1a942a327be
+481	2329	1714668277705073820	CMakeFiles/BankSystem_TP.dir/Command.cpp.o	bf1ac3ba82080ebc
+481	2755	1714668278133073052	CMakeFiles/BankSystem_TP.dir/Client.cpp.o	ce94f565cd4d176b
+480	4008	1714668279385070799	CMakeFiles/BankSystem_TP.dir/BankSystem_TP_autogen/mocs_compilation.cpp.o	679873a880b9a740
+481	4052	1714668279429070720	CMakeFiles/BankSystem_TP.dir/main.cpp.o	367803320e7c6a0b
+482	4368	1714668279745070151	CMakeFiles/BankSystem_TP.dir/BankMenu.cpp.o	723d9a6c5d026e76
+482	4704	1714668280081069547	CMakeFiles/BankSystem_TP.dir/AddBankForm.cpp.o	a61e479a0d7b6cd0
+995	4736	1714668280113069489	CMakeFiles/BankSystem_TP.dir/AccountManage.cpp.o	2990ae83c397bca6
+483	4941	1714668280317069122	CMakeFiles/BankSystem_TP.dir/AddClientForm.cpp.o	9229fe3595dd5765
+482	4961	1714668280337069086	CMakeFiles/BankSystem_TP.dir/BankInterface.cpp.o	4b18ee253ba426c5
+1496	5149	1714668280525068748	CMakeFiles/BankSystem_TP.dir/AddTransactionForm.cpp.o	a74ae180c1b80b75
+5149	5482	1714668280857068151	BankSystem_TP	bbb8e2559066ca30

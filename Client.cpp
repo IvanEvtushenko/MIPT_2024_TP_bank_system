@@ -78,6 +78,7 @@ void Bank::AddAccount(size_t client_id, size_t choice_acc, double count = 0) {
 }
 
 void Bank::AddTransaction(size_t client_id, size_t choice_tr, size_t choice_acc, double count = 0, bool abort = false, size_t operationId = 0) {
+  if (clients[client_id]->GetAccountId(choice_acc) == 0) AddAccount(client_id, choice_acc, 0);
   if (IsBlack(client_id)) throw CustomError("Client in black list", 3, 0);
   invoker.UserInput(choice_tr, list[clients[client_id]->GetAccountId(choice_acc)], count, abort, operationId);
 }

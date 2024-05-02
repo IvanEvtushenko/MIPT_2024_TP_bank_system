@@ -1,0 +1,5 @@
+/home/ivanev/build-BankSystem_TP-Desktop-Release/CMakeFiles/BankSystem_TP.dir
+/home/ivanev/build-BankSystem_TP-Desktop-Release/CMakeFiles/edit_cache.dir
+/home/ivanev/build-BankSystem_TP-Desktop-Release/CMakeFiles/rebuild_cache.dir
+/home/ivanev/build-BankSystem_TP-Desktop-Release/CMakeFiles/BankSystem_TP_autogen_timestamp_deps.dir
+/home/ivanev/build-BankSystem_TP-Desktop-Release/CMakeFiles/BankSystem_TP_autogen.dir

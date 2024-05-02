@@ -52,7 +52,10 @@ void AddingTransaction::ClickedButton() {
     if (error.getErrorCode() == 0) {
       QMessageBox::warning(this, tr("Ошибка снятия суммы"), tr("На балансе недостаточно средств"));
     } else if (error.getErrorCode() == 1) {
-      QMessageBox::warning(this, tr("Ошибка снятия суммы"), tr("На данный момент невозможно снять деньги с депозита. Пожалуйста, попробуйте позже"));
+      QMessageBox::warning(this, tr("Ошибка снятия суммы"),
+                           tr("На данный момент невозможно снять деньги с депозита. Пожалуйста, попробуйте позже"));
+    } else if (error.getErrorCode() == 3) {
+      QMessageBox::warning(this, tr("Ошибка транзакции"), tr("Счета заморожены, клиент находится в чёрном списке"));
     } else { std::cout << "Ну... тяжело" << std::endl; } // такого произойти не должно
   }
   parent_link->update_account_balance();
